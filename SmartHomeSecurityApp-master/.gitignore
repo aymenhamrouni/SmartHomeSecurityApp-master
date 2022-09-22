@@ -1,0 +1,6 @@
+/node_modules
+/www
+/.sourcemaps
+/.vscode
+/server/node_modules
+

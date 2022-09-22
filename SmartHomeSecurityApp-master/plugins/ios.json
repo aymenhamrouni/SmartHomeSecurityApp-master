@@ -1,0 +1,31 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.lertek.mdc.homesecurity"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "com.lertek.mdc.homesecurity"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.lertek.mdc.homesecurity"
+    },
+    "com.darktalker.cordova.screenshot": {
+      "PACKAGE_NAME": "com.lertek.mdc.homesecurity"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "PACKAGE_NAME": "com.lertek.mdc.homesecurity"
+    }
+  },
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.lertek.mdc.homesecurity"
+    }
+  }
+}

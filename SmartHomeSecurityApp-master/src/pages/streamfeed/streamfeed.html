@@ -1,0 +1,41 @@
+<!-- -->
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title> <p>Surveillance Cameras</p> </ion-title>
+    <!--     <ion-buttons end>
+      <button ion-button tappable (click)="goToAccount()">
+        <ion-icon name="cog"></ion-icon>
+      </button>
+    </ion-buttons> -->
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <video style="width: 100%; height: 100%" loop autoplay>
+      <source src="assets/streamfeeds/door.mp4" type="video/mp4" />
+      Your browser does not support playing this Video
+    </video>
+
+    <div class="card-title">Door Camera</div>
+  </ion-card>
+
+  <ion-card>
+    <video style="width: 100%; height: 100%" loop autoplay>
+      <source src="assets/streamfeeds/livingroom.mp4" type="video/mp4" />
+      Your browser does not support playing this Video
+    </video>
+
+    <div class="card-title">Living Room Camera</div>
+  </ion-card>
+
+  <ion-card>
+    <video style="width: 100%; height: 100%" loop autoplay>
+      <source src="assets/streamfeeds/kitchen.mp4" type="video/mp4" />
+      Your browser does not support playing this Video
+    </video>
+
+    <div class="card-title">Kitchen Camera</div>
+  </ion-card>
+</ion-content>

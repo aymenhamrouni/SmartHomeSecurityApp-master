@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title> <p>Fire/Toxication Sensors</p> </ion-title>
+   
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2></h2>
+
+  <div #container></div>
+  <div #container1></div>
+  <div #container2></div>
+  <div class="thermo">
+    <h3 class="tempTitle">Temperature</h3>
+
+    <img class="temp" src="assets/img/blueTemp.png" [hidden]="temp >= 10" />
+
+    <img class="temp" src="assets/img/redTemp.png" [hidden]="40 > temp" />
+    <img
+      class="temp"
+      src="assets/img/yellowTemp.png"
+      [hidden]="25 >= temp || temp >= 40"
+    />
+
+    <img
+      class="temp"
+      src="assets/img/greenTemp.png"
+      [hidden]="10 > temp || temp > 25"
+      ALIGN="right"
+    /><span class="tempVal">{{ temp }}°C</span>
+  </div>
+</ion-content>

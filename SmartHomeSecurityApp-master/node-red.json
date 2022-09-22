@@ -1,0 +1,613 @@
+[
+    {
+        "id": "3bce7356.e0b8bc",
+        "type": "tab",
+        "label": "Smart Home Security",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "e8dca4a4.9e8638",
+        "type": "inject",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "topic": "House/Sensor",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "x": 120,
+        "y": 300,
+        "wires": [
+            [
+                "8ee6903e.f42d5",
+                "60e3c40e.52a38c",
+                "227d56cf.eb59ea",
+                "f03d8fee.c0c48",
+                "d9ea6417.7bbde8",
+                "f2af3edb.033bf",
+                "d1131ee7.03f6",
+                "18db0b49.dedfe5",
+                "238e34ff.5153fc"
+            ]
+        ]
+    },
+    {
+        "id": "8ee6903e.f42d5",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "Carbon dioxide Level",
+        "func": "rnd= Math.floor(Math.random()*(700)+300);\nmsg.payload=rnd;\nmsg.topic=\"CarbonDioxide\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 180,
+        "wires": [
+            [
+                "58196aca.32e4b4"
+            ]
+        ]
+    },
+    {
+        "id": "60e3c40e.52a38c",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "Carbon monoxide Level",
+        "func": "rnd= Math.floor(Math.random()*(35)+5);\nmsg.payload=rnd;\nmsg.topic=\"CarbonMonoxide\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 260,
+        "wires": [
+            [
+                "58196aca.32e4b4"
+            ]
+        ]
+    },
+    {
+        "id": "25185b97.15d914",
+        "type": "mqtt out",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "topic": "home_1",
+        "qos": "",
+        "retain": "",
+        "broker": "c3e4bd07.ece54",
+        "x": 800,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "227d56cf.eb59ea",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "Window Sensor 1",
+        "func": "\nvar count = global.get('home_1_Kitchen_Window') || 0;\n\nmsg.payload=count;\nmsg.topic=\"Kitchen_Window\"\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 360,
+        "wires": [
+            [
+                "58196aca.32e4b4"
+            ]
+        ]
+    },
+    {
+        "id": "f03d8fee.c0c48",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "Door Sensor 1",
+        "func": "\nvar count = global.get('home_1_Front_Door') || 0;\n\nmsg.payload=count;\nmsg.topic=\"Front_Door\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 620,
+        "wires": [
+            [
+                "58196aca.32e4b4"
+            ]
+        ]
+    },
+    {
+        "id": "d9ea6417.7bbde8",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "Temperature",
+        "func": "rnd= Math.floor(Math.random()*(10)+20);\nmsg.payload=rnd;\nmsg.topic=\"Temp\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 120,
+        "wires": [
+            [
+                "58196aca.32e4b4"
+            ]
+        ]
+    },
+    {
+        "id": "e5366f99.ddeb",
+        "type": "json",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 610,
+        "y": 80,
+        "wires": [
+            [
+                "13f7ad5e.9df563",
+                "25185b97.15d914"
+            ]
+        ]
+    },
+    {
+        "id": "58196aca.32e4b4",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "func": "out = context.data || {}\nnode.log(\"start\"+msg.payload)\nnode.log(\"start stored\"+context.data);\ntopic=msg.topic;\nnode.log(topic);\n\nif(msg.topic==\"homeId\")\n{\n out[topic]=msg.payload;\n context.data=out;\n msg.payload=context.data;\n msg.out=\"sent data to \"+out.house;\n msg.topic=\"house/sensors\";\n context.data=null;\n return [msg];\n \n}\nelse {\n \n out[topic]=msg.payload;\n context.data=out;\n node.log(\"stored\"+context.data);\n return null;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 140,
+        "wires": [
+            [
+                "e5366f99.ddeb"
+            ]
+        ]
+    },
+    {
+        "id": "13f7ad5e.9df563",
+        "type": "debug",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 850,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "951307be.66b8a8",
+        "type": "inject",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "topic": "house/controle",
+        "payload": "send",
+        "payloadType": "str",
+        "repeat": "6",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "x": 180,
+        "y": 40,
+        "wires": [
+            [
+                "90d961c0.5b319"
+            ]
+        ]
+    },
+    {
+        "id": "90d961c0.5b319",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "homeId",
+        "func": "msg.topic=\"homeId\";\nmsg.payload=1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 40,
+        "wires": [
+            [
+                "58196aca.32e4b4"
+            ]
+        ]
+    },
+    {
+        "id": "27ec685e.357d28",
+        "type": "mqtt in",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "topic": "home_1_Kitchen_Window",
+        "qos": "2",
+        "broker": "797bf583.61c3dc",
+        "x": 830,
+        "y": 460,
+        "wires": [
+            [
+                "ec3f32b6.28825",
+                "6db3969c.b19af8"
+            ]
+        ]
+    },
+    {
+        "id": "ec3f32b6.28825",
+        "type": "json",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1170,
+        "y": 460,
+        "wires": [
+            [
+                "40118318.4566cc"
+            ]
+        ]
+    },
+    {
+        "id": "40118318.4566cc",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "func": "global.set('home_1_Kitchen_Window',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1350,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e6316294.58d9",
+        "type": "mqtt in",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "topic": "home_1_Living_Room_Window",
+        "qos": "2",
+        "broker": "797bf583.61c3dc",
+        "x": 830,
+        "y": 520,
+        "wires": [
+            [
+                "19f9cd80.9905d3"
+            ]
+        ]
+    },
+    {
+        "id": "19f9cd80.9905d3",
+        "type": "json",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1170,
+        "y": 520,
+        "wires": [
+            [
+                "6c0c1128.1d764"
+            ]
+        ]
+    },
+    {
+        "id": "6c0c1128.1d764",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "func": "global.set('home_1_Living_Room_Window',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1350,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7febb414.bcb99c",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "func": "global.set('home_1_Front_Door',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1330,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "faefe39.82f6c2",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "func": "global.set('home_1_Back_Door',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1330,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fdb6f00.2c5e71",
+        "type": "json",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1170,
+        "y": 620,
+        "wires": [
+            [
+                "7febb414.bcb99c"
+            ]
+        ]
+    },
+    {
+        "id": "482c8c91.6a0c44",
+        "type": "json",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1170,
+        "y": 680,
+        "wires": [
+            [
+                "faefe39.82f6c2"
+            ]
+        ]
+    },
+    {
+        "id": "cf037112.1a5db",
+        "type": "mqtt in",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "topic": "home_1_Front_Door",
+        "qos": "2",
+        "broker": "797bf583.61c3dc",
+        "x": 810,
+        "y": 620,
+        "wires": [
+            [
+                "fdb6f00.2c5e71"
+            ]
+        ]
+    },
+    {
+        "id": "50d6f5b0.a1c01c",
+        "type": "mqtt in",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "topic": "home_1_Back_Door",
+        "qos": "2",
+        "broker": "797bf583.61c3dc",
+        "x": 830,
+        "y": 680,
+        "wires": [
+            [
+                "482c8c91.6a0c44"
+            ]
+        ]
+    },
+    {
+        "id": "f2af3edb.033bf",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "Window Sensor 2",
+        "func": "\nvar count = global.get('home_1_Living_Room_Window') || 0;\n\nmsg.payload=count;\nmsg.topic=\"Living_Room_Window\"\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 360,
+        "y": 440,
+        "wires": [
+            [
+                "58196aca.32e4b4"
+            ]
+        ]
+    },
+    {
+        "id": "d1131ee7.03f6",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "Door Sensor 2",
+        "func": "\nvar count = global.get('home_1_Back_Door') || 0;\n\nmsg.payload=count;\nmsg.topic=\"Back_Door\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 700,
+        "wires": [
+            [
+                "58196aca.32e4b4"
+            ]
+        ]
+    },
+    {
+        "id": "6db3969c.b19af8",
+        "type": "debug",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1360,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "18db0b49.dedfe5",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "Alarm",
+        "func": "\nvar count = global.get('home_1_alarm') || 0;\n\nmsg.payload=count;\nmsg.topic=\"Alarm\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 760,
+        "wires": [
+            [
+                "58196aca.32e4b4"
+            ]
+        ]
+    },
+    {
+        "id": "babd659f.f0c888",
+        "type": "mqtt in",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "topic": "home_1_alarm",
+        "qos": "2",
+        "broker": "797bf583.61c3dc",
+        "x": 800,
+        "y": 780,
+        "wires": [
+            [
+                "8374be42.a18e5",
+                "6db3969c.b19af8"
+            ]
+        ]
+    },
+    {
+        "id": "8374be42.a18e5",
+        "type": "json",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1150,
+        "y": 760,
+        "wires": [
+            [
+                "dfc0d5cc.3264c8"
+            ]
+        ]
+    },
+    {
+        "id": "dfc0d5cc.3264c8",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "func": "global.set('home_1_alarm',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1330,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "238e34ff.5153fc",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "Window_Sensor_3",
+        "func": "\nvar count = global.get('home_1_Toilet_Window') || 0;\n\nmsg.payload=count;\nmsg.topic=\"Toilet_Window\"\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 500,
+        "wires": [
+            [
+                "58196aca.32e4b4"
+            ]
+        ]
+    },
+    {
+        "id": "600dbd39.263684",
+        "type": "mqtt in",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "topic": "home_1_Toilet_Window",
+        "qos": "2",
+        "broker": "797bf583.61c3dc",
+        "x": 880,
+        "y": 580,
+        "wires": [
+            [
+                "e74f0b49.b1f798"
+            ]
+        ]
+    },
+    {
+        "id": "e74f0b49.b1f798",
+        "type": "json",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1220,
+        "y": 580,
+        "wires": [
+            [
+                "483eef9f.aff5f"
+            ]
+        ]
+    },
+    {
+        "id": "483eef9f.aff5f",
+        "type": "function",
+        "z": "3bce7356.e0b8bc",
+        "name": "",
+        "func": "global.set('home_1_Toilet_Window',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1400,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c3e4bd07.ece54",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "Mosquito",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "797bf583.61c3dc",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "Mosquito",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]

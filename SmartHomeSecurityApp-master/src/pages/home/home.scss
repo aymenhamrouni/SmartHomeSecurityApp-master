@@ -1,0 +1,100 @@
+page-home,
+.home {
+  ion-list {
+    border-radius: 1rem;
+    overflow: hidden;
+
+    ion-item,
+    .item:first-child,
+    .item:last-child {
+      border: none;
+    }
+
+    ion-datetime {
+      padding-left: 0;
+    }
+  }
+  .navbarLogo {
+    height: 40px;
+    float: left;
+    margin-left: 10px;
+  }
+  .image {
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    border: 2px solid #fff;
+  }
+  .card-background-page {
+    ion-card {
+      position: relative;
+      text-align: center;
+
+      top: 20px;
+    }
+
+    .card-title {
+      position: absolute;
+      top: 80%;
+      font-size: 0.9em;
+      width: 100%;
+      font-weight: bold;
+      color: rgb(3, 0, 0);
+    }
+    .card-title2 {
+      position: absolute;
+      top: 100%;
+      font-size: 0.9em;
+      width: 90%;
+      font-weight: bold;
+      color: rgb(3, 0, 0);
+    }
+
+    .card-subtitle {
+      font-size: 1em;
+      position: absolute;
+      top: 90%;
+      width: 100%;
+      color: rgb(0, 0, 0);
+    }
+  }
+  page-home {
+    .blue {
+      color: #006699;
+    }
+    #udpateBox {
+      textarea {
+        width: 100%;
+      }
+    }
+  }
+  [cards] {
+    .grid-full ion-col {
+      flex: 0 0 50%;
+      max-width: 100%;
+      padding: 5px 0;
+    }
+    .row {
+      padding: 0;
+    }
+    .col {
+      padding: 0 0;
+    }
+    .card {
+      margin: 0 0 0 20px;
+      padding: 0;
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
+      border-radius: 0;
+      h1 {
+        font-weight: 400;
+        font-size: 3.5rem;
+      }
+      p {
+        font-weight: 100;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+<!-- -->
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title> <p>Smart Home Security</p> </ion-title>
+    
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label *ngIf="isToggled">Alarm Activated</ion-label>
+      <ion-label *ngIf="!isToggled">Alarm Desactivated</ion-label>
+      <ion-toggle
+        [(ngModel)]="isToggled"
+        (ionChange)="notify()"
+        disabled="{{ alarm }}"
+      ></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <div cards>
+    <div class="grid-full">
+      <ion-row>
+        <ion-col>
+          <img
+            class="image"
+            (click)="goToStreamFeed()"
+            src="assets/img/cameras.png"
+          />
+
+          <div class="image">Surveillance Cameras</div>
+        </ion-col>
+
+        <ion-col>
+          <img
+            class="image"
+            (click)="goToFireSensor()"
+            src="assets/img/fire.png"
+          />
+          <div class="image">Fire Sensors Stats</div>
+        </ion-col>
+
+        <ion-col>
+          <img class="image" (click)="goToDoors()" src="assets/img/doors.png" />
+          <div class="image">Doors Sensors Stats</div>
+        </ion-col>
+
+        <ion-col>
+          <img
+            class="image"
+            (click)="goToWindows()"
+            src="assets/img/windows.png"
+          />
+          <div class="image">Winsows Sensors Stats</div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

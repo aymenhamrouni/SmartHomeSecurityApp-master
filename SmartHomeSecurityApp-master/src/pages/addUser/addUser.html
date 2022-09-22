@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <p style="text-align : center">{{ homeId }}</p>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="animated fadeIn form-page">
+  <div text-center class="animated fadeInDown">
+    <h5 ion-text class="text-primary"><strong>Add User</strong></h5>
+  </div>
+  <div class="list-form" [formGroup]="addUserForm">
+    <ion-list radio-group formControlName="type">
+      <ion-item>
+        <ion-label>User Type*</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Resident</ion-label>
+        <ion-radio value="1" (click)="configureUserType(1)" checked></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Guest</ion-label>
+        <ion-radio value="2" (click)="configureUserType(2)"></ion-radio>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="person" item-start class="text-primary"></ion-icon>
+        Username*
+      </ion-label>
+      <ion-input type="text" formControlName="userName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+        Email*
+      </ion-label>
+      <ion-input type="email" formControlName="email" class="form-control"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>
+        <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+        Password (Min 5 Character)
+      </ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <div>
+      <button ion-button icon-start block color="dark" tappable (click)="CreateUser()">
+        <ion-icon name="log-in"></ion-icon>
+        Create User Account
+      </button>
+    </div>
+  </div>
+</ion-content>

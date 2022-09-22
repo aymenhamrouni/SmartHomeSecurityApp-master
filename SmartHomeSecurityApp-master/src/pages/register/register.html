@@ -1,0 +1,78 @@
+<!-- -->
+<ion-content class="auth-page">
+  <div class="login-content">
+
+    <!-- Logo -->
+    <div text-center class="animated fadeInDown">
+        <div class="logo-chico"></div>
+        <h4 ion-text class="text-primary">
+          <strong>Register Your Home</strong>
+        </h4>
+      </div>
+
+    <!-- Login form -->
+    <div class="list-form" [formGroup]="registerForm">
+
+        <ion-item>
+            <ion-label floating>
+              <ion-icon name="code" item-start class="text-primary"></ion-icon>
+              Home Code*
+              </ion-label>
+            <ion-input type="text" formControlName="homeId"></ion-input>
+        </ion-item>
+
+      <ion-item>
+          <ion-label floating>
+            <ion-icon name="home" item-start class="text-primary"></ion-icon>
+            Street Address*
+            </ion-label>
+          <ion-input type="text" formControlName="address"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          Username*
+        </ion-label>
+        <ion-input type="text" formControlName="userName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+          Email*
+        </ion-label>
+        <ion-input type="email" formControlName="email" class="form-control"></ion-input>
+      </ion-item>
+      <!--<div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.email" >
+            <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+          {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>-->
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Password (Min 5 Character)
+        </ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+
+    </div>
+
+    <div margin-top>
+      <button ion-button block color="dark" tappable (click)="register()">
+        SIGN UP
+      </button>
+
+    </div>
+
+    <!-- Other links -->
+    <div text-center margin-top padding-bottom>
+      <span ion-text color="primary" tappable (click)="login()">You already have an account ?</span>
+    </div>
+
+  </div>
+</ion-content>

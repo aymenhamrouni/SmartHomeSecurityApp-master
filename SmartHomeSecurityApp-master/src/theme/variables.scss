@@ -1,0 +1,53 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+@import "ionic.globals";
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+
+$text-color: #4c6df9;
+$background-color: #fff;
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+$colors: (
+  primary: #ffffff,
+  secondary: #222222,
+  danger: #f53d3d,
+  light: rgb(86, 88, 89),
+  dark: #000000,
+  green: rgb(84, 135, 54),
+  gray: #a2a3ae,
+);
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+$ionicons-font-path: "../assets/fonts";
+@import "ionic.ionicons";
+
+$loading-md-text-color: white;
+$loading-ios-text-color: $loading-md-text-color;
+$loading-wp-text-color: $loading-md-text-color;
+$loading-md-background: black;
+$loading-ios-background: $loading-md-background;
+$loading-wp-background: $loading-md-background;

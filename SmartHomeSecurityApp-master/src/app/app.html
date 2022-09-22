@@ -1,0 +1,77 @@
+<ion-menu side="left" id="authenticated" [content]="content">
+  <ion-header>
+    <ion-toolbar class="user-profile">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <div class="user-avatar">
+              <img src="assets/img/logo-inicio.png" alt="logo-inicio" />
+            </div>
+          </ion-col>
+          <ion-col padding-top col-8>
+            <h2 ion-text class="no-margin bold text-white">
+              Smart Home Security
+            </h2>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="common-bg-2">
+    <ion-grid>
+      <ion-row no-padding class="other-data">
+        <ion-col no-padding class="column">
+          <button
+            ion-button
+            icon-left
+            small
+            full
+            color="light"
+            menuClose
+            (click)="menuPrincipal()"
+          >
+            <ion-icon name="home"></ion-icon>
+            Home Page
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row no-padding class="other-data">
+        <ion-col no-padding class="column">
+          <button
+            ion-button
+            icon-left
+            small
+            full
+            color="light"
+            menuClose
+            (click)="addUser()"
+          >
+            <ion-icon name="archive"></ion-icon>
+            Add User
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row no-padding class="other-data">
+        <ion-col no-padding class="column">
+          <button
+            ion-button
+            icon-left
+            small
+            full
+            color="light"
+            menuClose
+            (click)="logout()"
+          >
+            <ion-icon name="log-out"></ion-icon>
+            Logout
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
